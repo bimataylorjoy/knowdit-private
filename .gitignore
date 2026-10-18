@@ -1,0 +1,73 @@
+# Rust build outputs
+**/target/
+**/*.rs.bk
+
+# Runtime databases and audit state
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite3-wal
+*.sqlite3-shm
+*.sqlite3-journal
+**/knowdit.sqlite3
+**/knowdit.sqlite3-*
+**/.knowdit-mapper-checkpoint.json
+
+# Generated build and audit outputs
+**/artifacts/
+**/cache/
+**/broadcast/
+**/out/
+**/coverage/
+**/test-results/
+data/out/
+
+# Raw datasets (the validated Historical KG is tracked separately)
+data/datasets/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.secret
+secrets/
+credentials/
+
+# LLM debug traces
+**/llm-debug/
+**/debug/
+*.jsonl
+
+# Derived knowledge-graph copies. They are reproducible from the tracked source
+# graphs and data/incidents/*.json with `learn init-db`, the tools/ ingest scripts,
+# `learn link` and `merge-kg`.
+data/historical-incidents.db
+data/historical-merge-test.db
+data/historical-merged.db
+data/*.pre-*.db
+data/backups/
+
+# Keep the validated Historical KG and its documentation
+!data/historical.db
+!data/HISTORICAL_KG.md
+
+# Nested checkout metadata
+engine/.git/
+
+# Python bytecode
+__pycache__/
+
+# Local editor and assistant tooling
+.claude/
+.commandcode/
+opencode.json
+opencode.jsonc

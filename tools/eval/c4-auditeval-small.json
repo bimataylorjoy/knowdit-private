@@ -1,0 +1,519 @@
+{
+  "name": "c4-auditeval-small",
+  "cases": [
+    {
+      "id": "c4-494-h-1",
+      "program": "THORWallet",
+      "source": "data/datasets/reports/494.md#H-1",
+      "repo": "data/datasets/contracts/494",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "missing-cap",
+      "locations": [
+        {
+          "contract": "MergeTgt",
+          "function": "onTokenTransfer"
+        },
+        {
+          "contract": "MergeTgt",
+          "function": "claimTitn"
+        }
+      ],
+      "notes": "MergeTgt has no handling if TGT_TO_EXCHANGE is exceeded during the exchange period"
+    },
+    {
+      "id": "c4-494-h-2",
+      "program": "THORWallet",
+      "source": "data/datasets/reports/494.md#H-2",
+      "repo": "data/datasets/contracts/494",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "restriction-bypass",
+      "locations": [
+        {
+          "contract": "Titn",
+          "function": "_validateTransfer"
+        },
+        {
+          "contract": "Titn",
+          "function": "_credit"
+        }
+      ],
+      "notes": "Transfer restriction bypassed with two bridge transfers"
+    },
+    {
+      "id": "c4-494-m-1",
+      "program": "THORWallet",
+      "source": "data/datasets/reports/494.md#M-1",
+      "repo": "data/datasets/contracts/494",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "griefing",
+      "locations": [
+        {
+          "contract": "Titn",
+          "function": "_credit"
+        },
+        {
+          "contract": "Titn",
+          "function": "_validateTransfer"
+        }
+      ],
+      "notes": "Boolean isBridgedTokenHolder lets anyone lock a holder's non-bridged tokens"
+    },
+    {
+      "id": "c4-484-h-01",
+      "program": "Next Generation",
+      "source": "data/datasets/reports/484.md#H-01",
+      "repo": "data/datasets/contracts/484",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "signature-replay",
+      "locations": [
+        {
+          "contract": "Forwarder",
+          "function": "_verifySig"
+        },
+        {
+          "contract": "Forwarder",
+          "function": "execute"
+        }
+      ],
+      "notes": "Cross-chain signature replay via user-supplied domainSeparator"
+    },
+    {
+      "id": "c4-484-m-01",
+      "program": "Next Generation",
+      "source": "data/datasets/reports/484.md#M-01",
+      "repo": "data/datasets/contracts/484",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "allowance-bypass",
+      "locations": [
+        {
+          "contract": "Token",
+          "function": "transferFrom"
+        },
+        {
+          "contract": "Token",
+          "function": "transferSanity"
+        }
+      ],
+      "notes": "Spender makes the owner pay fees beyond the approved amount"
+    },
+    {
+      "id": "c4-484-m-02",
+      "program": "Next Generation",
+      "source": "data/datasets/reports/484.md#M-02",
+      "repo": "data/datasets/contracts/484",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "missing-check",
+      "locations": [
+        {
+          "contract": "Token"
+        }
+      ],
+      "notes": "approve is not overridden to call transferSanity (blacklisted approvals)"
+    },
+    {
+      "id": "c4-484-m-03",
+      "program": "Next Generation",
+      "source": "data/datasets/reports/484.md#M-03",
+      "repo": "data/datasets/contracts/484",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "missing-deadline",
+      "locations": [
+        {
+          "contract": "Forwarder",
+          "function": "execute"
+        }
+      ],
+      "notes": "No deadline in forwarded requests"
+    },
+    {
+      "id": "c4-486-h-01",
+      "program": "Liquid Ron",
+      "source": "data/datasets/reports/486.md#H-01",
+      "repo": "data/datasets/contracts/486",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "accounting",
+      "locations": [
+        {
+          "contract": "LiquidRon",
+          "function": "totalAssets"
+        }
+      ],
+      "notes": "totalAssets wrong when operatorFeeAmount > 0"
+    },
+    {
+      "id": "c4-486-m-01",
+      "program": "Liquid Ron",
+      "source": "data/datasets/reports/486.md#M-01",
+      "repo": "data/datasets/contracts/486",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "reward-frontrun",
+      "locations": [
+        {
+          "contract": "LiquidRon",
+          "function": "totalAssets"
+        },
+        {
+          "contract": "LiquidRon",
+          "function": "harvest"
+        }
+      ],
+      "notes": "Front-running reward accumulation without staking"
+    },
+    {
+      "id": "c4-486-m-02",
+      "program": "Liquid Ron",
+      "source": "data/datasets/reports/486.md#M-02",
+      "repo": "data/datasets/contracts/486",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "access-control",
+      "locations": [
+        {
+          "contract": "LiquidRon",
+          "function": "onlyOperator"
+        },
+        {
+          "contract": "LiquidRon",
+          "function": "harvest"
+        }
+      ],
+      "notes": "onlyOperator modifier blocks operators"
+    },
+    {
+      "id": "c4-487-h-01",
+      "program": "IQ AI",
+      "source": "data/datasets/reports/487.md#H-01",
+      "repo": "data/datasets/contracts/487",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "governance",
+      "locations": [
+        {
+          "contract": "TokenGovernor",
+          "function": "quorum"
+        },
+        {
+          "contract": "TokenGovernor",
+          "function": "quorumDenominator"
+        }
+      ],
+      "notes": "Proposals won with voting power as low as 4%"
+    },
+    {
+      "id": "c4-487-m-01",
+      "program": "IQ AI",
+      "source": "data/datasets/reports/487.md#M-01",
+      "repo": "data/datasets/contracts/487",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "frontrun-deploy",
+      "locations": [
+        {
+          "contract": "LiquidityManager",
+          "function": "addLiquidityToFraxswap"
+        }
+      ],
+      "notes": "Anyone can deploy a FraxSwapPair with a low fee"
+    },
+    {
+      "id": "c4-487-m-02",
+      "program": "IQ AI",
+      "source": "data/datasets/reports/487.md#M-02",
+      "repo": "data/datasets/contracts/487",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "dos",
+      "locations": [
+        {
+          "contract": "LiquidityManager",
+          "function": "addLiquidityToFraxswap"
+        },
+        {
+          "contract": "LiquidityManager",
+          "function": "moveLiquidity"
+        }
+      ],
+      "notes": "Token injection DoS of liquidity migration"
+    },
+    {
+      "id": "c4-487-m-03",
+      "program": "IQ AI",
+      "source": "data/datasets/reports/487.md#M-03",
+      "repo": "data/datasets/contracts/487",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "validation",
+      "locations": [
+        {
+          "contract": "TokenGovernor",
+          "function": "setProposalThresholdPercentage"
+        }
+      ],
+      "notes": "Proposal threshold validation ineffective"
+    },
+    {
+      "id": "c4-474-h-01",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#H-01",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "accounting",
+      "locations": [
+        {
+          "contract": "VirtualToken",
+          "function": "cashIn"
+        }
+      ],
+      "notes": "VirtualToken.cashIn mints the wrong amount"
+    },
+    {
+      "id": "c4-474-h-02",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#H-02",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "dos",
+      "locations": [
+        {
+          "contract": "LamboFactory",
+          "function": "_deployLamboToken"
+        },
+        {
+          "contract": "LamboFactory",
+          "function": "createLaunchPad"
+        }
+      ],
+      "notes": "LamboFactory DoS through createPair revert"
+    },
+    {
+      "id": "c4-474-h-03",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#H-03",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "logic",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "_getQuoteAndDirection"
+        },
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "previewRebalance"
+        }
+      ],
+      "notes": "directionMask computed incorrectly"
+    },
+    {
+      "id": "c4-474-h-04",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#H-04",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "high",
+      "bug_class": "access-control",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "rebalance"
+        }
+      ],
+      "notes": "Anyone can call rebalance with arbitrary values"
+    },
+    {
+      "id": "c4-474-m-01",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-01",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "dos",
+      "locations": [
+        {
+          "contract": "VirtualToken",
+          "function": "takeLoan"
+        },
+        {
+          "contract": "LamboFactory",
+          "function": "createLaunchPad"
+        }
+      ],
+      "notes": "Cheap launches let an attacker consume VirtualToken loan capacity"
+    },
+    {
+      "id": "c4-474-m-02",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-02",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "math",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "_getTokenInOut"
+        }
+      ],
+      "notes": "_getTokenInOut rebalancing formula wrong"
+    },
+    {
+      "id": "c4-474-m-03",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-03",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "missing-deadline",
+      "locations": [
+        {
+          "contract": "LamboVEthRouter",
+          "function": "sellQuote"
+        },
+        {
+          "contract": "LamboVEthRouter",
+          "function": "buyQuote"
+        }
+      ],
+      "notes": "sellQuote and buyQuote lack a deadline"
+    },
+    {
+      "id": "c4-474-m-04",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-04",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "stuck-funds",
+      "locations": [
+        {
+          "contract": "LamboVEthRouter",
+          "function": "_buyQuote"
+        },
+        {
+          "contract": "LamboVEthRouter",
+          "function": "receive"
+        }
+      ],
+      "notes": "ETH accumulated in LamboVEthRouter is irretrievable"
+    },
+    {
+      "id": "c4-474-m-05",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-05",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "logic",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "_getQuoteAndDirection"
+        }
+      ],
+      "notes": "Wrong struct field and hardcoded sqrtPriceLimitX96 in _getQuoteAndDirection"
+    },
+    {
+      "id": "c4-474-m-06",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-06",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "input-validation",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "rebalance"
+        },
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "onMorphoFlashLoan"
+        }
+      ],
+      "notes": "Depeg profit captured through a malicious pool"
+    },
+    {
+      "id": "c4-474-m-07",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-07",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "logic",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "rebalance"
+        },
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "onMorphoFlashLoan"
+        }
+      ],
+      "notes": "Profit requirement prevents keeping the peg"
+    },
+    {
+      "id": "c4-474-m-08",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-08",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "dos",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "rebalance"
+        }
+      ],
+      "notes": "Users can block rebalancing for gain"
+    },
+    {
+      "id": "c4-474-m-09",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-09",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "dos",
+      "locations": [
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "_executeBuy"
+        },
+        {
+          "contract": "LamboRebalanceOnUniwap",
+          "function": "_executeSell"
+        }
+      ],
+      "notes": "Rebalance DoS if the OKX commission exceeds fee limits"
+    },
+    {
+      "id": "c4-474-m-10",
+      "program": "Lambo.win",
+      "source": "data/datasets/reports/474.md#M-10",
+      "repo": "data/datasets/contracts/474",
+      "vulnerable_commit": "dataset",
+      "severity": "medium",
+      "bug_class": "decimals",
+      "locations": [
+        {
+          "contract": "VirtualToken"
+        }
+      ],
+      "notes": "NFT metadata wrong for underlying tokens with decimals != 18"
+    }
+  ]
+}
